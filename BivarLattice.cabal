@@ -1,0 +1,73 @@
+name:           BivarLattice
+version:        0.0
+synopsis:       Two lattice methods for pricing bivariate options
+author:         Paul Koerbitz
+license:        BSD3
+build-type:     Simple
+cabal-version:  >= 1.9.2
+
+executable main
+  build-depends:  base,
+                  split,
+                  random,
+                  statistics,
+                  data-inttrie,
+                  containers,
+                  data-memocombinators,
+                  repa,
+                  time,
+                  GaussQuadIntegration,
+                  hashmap,
+                  hashable
+  main-is:        Main.hs
+  hs-source-dirs: src, test
+  ghc-options:     -Wall -rtsopts -O2
+
+Test-Suite test-closedForm
+  type:            exitcode-stdio-1.0
+  build-depends:   base >= 4 && < 5,
+                   HUnit >= 1.2 && < 2,
+                   QuickCheck >= 2.4,
+                   test-framework >= 0.4.1,
+                   test-framework-quickcheck2,
+                   test-framework-hunit,
+                   statistics
+  x-uses-tf:       true
+  ghc-options:     -Wall -rtsopts
+  hs-source-dirs:  test, src
+  main-is:         ClosedForm.hs
+
+-- Test-Suite test-monteCarlo
+--   type:            exitcode-stdio-1.0
+--   build-depends:   base >= 4 && < 5,
+--                    HUnit >= 1.2 && < 2,
+--                    QuickCheck >= 2.4,
+--                    test-framework >= 0.4.1,
+--                    test-framework-quickcheck2,
+--                    test-framework-hunit,
+--                    statistics,
+--                    split,
+--                    gsl-random,
+--                    random
+--   x-uses-tf:       true
+--   ghc-options:     -Wall -rtsopts
+--   hs-source-dirs:  test, src
+--   main-is:         MonteCarlo.hs
+
+Test-Suite test-trinomialBivarTree
+  type:            exitcode-stdio-1.0
+  build-depends:   base >= 4 && < 5,
+                   HUnit >= 1.2 && < 2,
+                   QuickCheck >= 2.4,
+                   test-framework >= 0.4.1,
+                   test-framework-quickcheck2,
+                   test-framework-hunit,
+                   data-inttrie,
+                   containers,
+                   data-memocombinators,
+                   --statistics,
+                   repa
+  x-uses-tf:       true
+  ghc-options:     -Wall -rtsopts
+  hs-source-dirs:  test, src
+  main-is:         TriBivarTree.hs
